@@ -35,7 +35,7 @@ table {
 <tr><th>Name</th><th>Company</th><th>Access Permission</th></tr>
 <% ArrayList<User> list = new DatabaseHandler().getUnauthorisedUsers();
 	for(User u : list){
-		out.println("<tr><td>"+u.getName()+"</td><td>"+u.getCompany()+"</td><td><a href='/addAuth/"+u.getEmail()+"/'>Authorize</a></td><td><a href='/deleteUser/"+u.getEmail()+"/'>Delete</a></td></tr>");
+		out.println("<tr><td>"+u.getName()+"</td><td>"+u.getCompany()+"</td><td><a href='"+application.getContextPath()+"/addAuth/"+u.getEmail()+"/'>Authorize</a></td><td><a href='/deleteUser/"+u.getEmail()+"/'>Delete</a></td></tr>");
 	}
 %>
 <br>
@@ -49,7 +49,7 @@ table {
 <tr><th>Name</th><th>Company</th><th>Access Permission</th></tr>
 <% ArrayList<User> list2 = new DatabaseHandler().getAuthorisedUsers();
 	for(User u : list2){
-		out.println("<tr><td>"+u.getName()+"</td><td>"+u.getCompany()+"</td><td><a href='/revokeAuth/"+u.getEmail()+"/'>Unauthorize</a></td></tr>");
+		out.println("<tr><td>"+u.getName()+"</td><td>"+u.getCompany()+"</td><td><a href='"+application.getContextPath()+"/revokeAuth/"+u.getEmail()+"/'>Unauthorize</a></td></tr>");
 	}
 %>
 <br>

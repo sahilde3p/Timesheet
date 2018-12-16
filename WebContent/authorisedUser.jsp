@@ -265,13 +265,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 <footer class="w3-container w3-teal w3-center w3-margin-top">
   <p>Find me on social media.</p>
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <a href="https://www.facebook.com/ANYGroupcanada/" target="_blank"> <i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+
+  
+ <a href="https://ca.linkedin.com/company/any-group" target="_blank"> <i class="fa fa-linkedin w3-hover-opsacity"></i></a>
+  <p>Powered by <a href="https://anygroup.ca" target="_blank">anygroup.ca</a></p>
 </footer>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
