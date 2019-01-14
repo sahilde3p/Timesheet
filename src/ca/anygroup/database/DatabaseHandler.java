@@ -202,7 +202,7 @@ public class DatabaseHandler {
 		connect();
 		ArrayList<User> list = new ArrayList<>();
 		try {
-			pst = con.prepareStatement("select auth.email,auth.name,company.name from auth inner join company on auth.companyid=company.id where isvalid=0 and email <> 'admin'");
+			pst = con.prepareStatement("select auth.email,auth.name,company.name from auth inner join company on auth.companyid=company.id where isvalid=0 and email <> 'admin' order by company.name");
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
 			{
@@ -225,7 +225,7 @@ public class DatabaseHandler {
 		connect();
 		ArrayList<User> list = new ArrayList<>();
 		try {
-			pst = con.prepareStatement("select auth.email,auth.name,company.name from auth inner join company on auth.companyid=company.id where isvalid=1 and email <> 'admin'");
+			pst = con.prepareStatement("select auth.email,auth.name,company.name from auth inner join company on auth.companyid=company.id where isvalid=1 and email <> 'admin' order by company.name");
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
 			{
