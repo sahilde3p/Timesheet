@@ -11,40 +11,11 @@
 <!DOCTYPE html>
 <html >
 <head>
-<style>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 
-
-
- table {
- 	
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-    
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-    color: black;
-}
-tr:nth-child(even){background-color: #f2f2f2}
-tr:nth-child(odd){background-color: #ffffff}
-th { 
-  background: #333; 
-  color: white; 
-  font-weight: bold; 
-}
-
-#sign 
-{
- position: relative;
- float: right;
- padding-right : 20px;
-}
-
-</style>
   <meta charset="UTF-8">
     <title>Get Timesheet</title>
   <%
@@ -58,23 +29,32 @@ if(session.getAttribute("adminAuth")==null){
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'>
-<link rel='stylesheet prefetch' href='https://raubarrera.neocities.org/cdpn/style.css'>
-
-      <link rel="stylesheet" href="resources/css/style.css">
+  
 
   
 </head>
 
 <body>
-<br>
-<a href="${pageContext.request.contextPath}/adminUser.jsp"><button>HOME</button></a>
-<a href="${pageContext.request.contextPath}/getInfo.jsp"><button>BACK</button></a>
-<form id="sign" action="signout" method="post">
-<input type ="hidden" name="logout" value="authorisedAuth"/>
-<input type ="submit" class="login100-form-btn" value="Signout"/>
-</form>
-  <div class="center-on-page">
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-lg-1 mt-3">
+			<a class="btn btn-outline-primary mb-3"
+				href="${pageContext.request.contextPath}/adminUser.jsp">Home</a>
+		</div>
+		<div class="col-lg-1 mt-3">
+			<a class="btn btn-outline-primary mb-3"
+				href="${pageContext.request.contextPath}/getInfo.jsp">Back</a>
+		</div>
+		<form class="col-lg-1 mt-3"
+			action="${pageContext.request.contextPath}/signout" method="post">
+			<input type="hidden" name="logout" value="authorisedAuth" /> <input
+				type="submit" class="btn btn-outline-primary mb-3" value="Signout" />
+		</form>
+
+	</div>
+
+ 
  <form action="getUser" method="get">
 
 
@@ -90,8 +70,8 @@ ArrayList<Company> list = db.returnCompanies();
 for(Company c :list){
 out.print("<option value='"+c.getId()+"'>"+c.getName()+"</option>");
 }
-out.print("</select></div><br><center>");
-out.println("<input type=\"submit\" value=\"Submit\"></center>");
+out.print("</select></div><br>");
+out.println("<input type=\"submit\" class=\"btn btn-outline-success\" value=\"Submit\">");
 }
 %>
 
@@ -107,8 +87,8 @@ if(request.getAttribute("users")!=null){
 	for(User u : user){
 		out.print("<option value='"+u.getEmail()+"'>"+u.getName()+"</option>");
 	}
-	out.print("</select></div><br><center>");
-	out.println("<input type=\"submit\" value=\"Submit\"></center>");
+	out.print("</select></div><br>");
+	out.println("<input type=\"submit\" class=\"btn btn-outline-success\" value=\"Submit\">");
 	}
 %>
 </form>
@@ -126,8 +106,8 @@ if(request.getAttribute("period")!=null){
 		
 		out.print("<option value='"+p.getPeriodId()+"'>"+p.getPeriodFrom() +" to "+p.getPeriodTo()+"</option>");
 	}
-	out.print("</select></div><br><center>");
-	out.println("<input type=\"submit\" value=\"Submit\"></center>");
+	out.print("</select></div><br>");
+	out.println("<input type=\"submit\" class=\"btn btn-outline-success\" value=\"Submit\">");
 }
 %> 
 </form>
@@ -135,12 +115,12 @@ if(request.getAttribute("period")!=null){
 DecimalFormat df = new DecimalFormat("#.##");
 if(request.getAttribute("timesheet")!=null){
 	
-	out.println("<div style=\"overflow-x:auto;\">");
-	out.println("<table>");
-	out.println("<tr>");
+	out.println("<div class=\"table-responsive\">");
+	out.println("<table class=\"table table-hover\">");
+	out.println("<thead><tr>");
 
 	out.println("<th>Day</th><th>Hours</th><th>Overtime</th>");
-	out.println("</tr>");
+	out.println("</tr></thead><tbody>");
 	double hours=0;
 	double overtime=0;
 	ArrayList<Timesheet> time =(ArrayList)request.getAttribute("timesheet");
@@ -151,7 +131,7 @@ if(request.getAttribute("timesheet")!=null){
 		out.println("<tr><td>"+t.getDate()+"</td><td>"+t.getHours()+"</td><td>"+t.getOverTime()+"</td></tr>");
 	}
 	
-	out.println("</table>");
+	out.println("</tbody></table>");
 	out.println("</div>");
 	out.println("<br>Total Hours:<b> "+df.format(hours)+"</b><br>");
 	out.println("Total Overtime: <b>"+df.format(overtime)+"<b>");
@@ -161,8 +141,19 @@ if(request.getAttribute("timesheet")!=null){
 
 
 
-</div>
-  
+
+  	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+  </div>
   
 </body>
 </html>
