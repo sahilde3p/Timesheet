@@ -494,15 +494,16 @@ finally {
 		Map<String,ArrayList<Timesheet>> map = new HashMap<>();
 		
 		try {
-			pst = con.prepareStatement("select  timesheet.email, auth.name from timesheet inner join auth on auth.email = timesheet.email where auth.companyid = ? and timesheet.periodid =?");
+			pst = con.prepareStatement("select distinct timesheet.email, auth.name from timesheet inner join auth on auth.email = timesheet.email where auth.companyid = ? and timesheet.periodid =?");
 			pst.setInt(1, companyId);
 			pst.setInt(2, periodId);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
 				
-				pst = con.prepareStatement("select auth.name,periodid,day,hours,overtime from timesheet inner join auth on auth.email = timesheet.email where timesheet.email =?");
+				pst = con.prepareStatement("select auth.name,periodid,day,hours,overtime from timesheet inner join auth on auth.email = timesheet.email where timesheet.email =? and timesheet.periodid=?");
 				pst.setString(1, rs.getString(1));
+				pst.setInt(2, periodId);
 				ResultSet r = pst.executeQuery();
 				ArrayList<Timesheet> list = new ArrayList<>();
 				
